@@ -21,6 +21,10 @@ def download_images(image_name, link_image):
         pic.write(response.content)
 
 
-if __name__ == '__main__':
+def fetch_spacex_last_launch():
     for image_names, image in enumerate(get_images_spacex()):
         download_images(f'spacex{image_names}', image)
+
+
+if __name__ == '__main__':
+    fetch_spacex_last_launch()
