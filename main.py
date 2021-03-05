@@ -32,13 +32,16 @@ def format_image(link_images):
 
 
 def download_images_hubble(image_id):
+    directory = './images'
     api_hubble = 'http://hubblesite.org/api/v3/image/{}'
     response = requests.get(api_hubble.format(image_id))
     response.raise_for_status()
     for photo in response.json()['image_files']:
         response = requests.get(f'https:{photo["file_url"]}', verify=False)
         response.raise_for_status()
-        with open(f'{image_id}.{format_image(photo["file_url"])}', mode='wb') as pic:
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+        with open(f'{directory}/{image_id}.{format_image(photo["file_url"])}', mode='wb') as pic:
             pic.write(response.content)
 
 
