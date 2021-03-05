@@ -6,6 +6,13 @@ import requests
 directory = './images'
 
 
+def get_images_spacex(link_spacex):
+    response = requests.get(link_spacex)
+    response.raise_for_status()
+    images_spacex = response.json()['links']['flickr']['original']
+    return images_spacex
+
+
 def download_images(link_image, image_name):
     response = requests.get(link_image)
     response.raise_for_status()
@@ -17,4 +24,6 @@ def download_images(link_image, image_name):
 
 name = 'sputnik.jpeg'
 link_to_image = 'https://upload.wikimedia.org/wikipedia/commons/3/3f/HST-SM4.jpeg'
-download_images(link_to_image, name)
+spacex = 'https://api.spacexdata.com/v4/launches/latest'
+# download_images(link_to_image, name)
+print(get_images_spacex(spacex))
