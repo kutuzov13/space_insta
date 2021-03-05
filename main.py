@@ -28,13 +28,19 @@ def fetch_spacex_last_launch():
 
 def format_image(link_images):
     slice_link = link_images.split('/')[-1]
-    return print(slice_link.split('.')[-1])
+    return slice_link.split('.')[-1]
 
 
-hub = requests.get('http://hubblesite.org/api/v3/image/1', verify=True)
-for i in hub.json()['image_files']:
-    format_image(i["file_url"])
+def download_images_hubble(image_id):
+    api_hubble = 'http://hubblesite.org/api/v3/image/{}'
+    response = requests.get(api_hubble.format(image_id))
+    response.raise_for_status()
+    for photo in response.json()['image_files']:
+        response = requests.get(f'https:{photo["file_url"]}', verify=False)
+        response.raise_for_status()
+        with open(f'{image_id}.{format_image(photo["file_url"])}', mode='wb') as pic:
+            pic.write(response.content)
 
 
-# if __name__ == '__main__':
-#     fetch_spacex_last_launch()
+if __name__ == '__main__':
+    download_images_hubble('1')
