@@ -26,5 +26,15 @@ def fetch_spacex_last_launch():
         download_images(f'spacex{image_names}', image)
 
 
-if __name__ == '__main__':
-    fetch_spacex_last_launch()
+def format_image(link_images):
+    slice_link = link_images.split('/')[-1]
+    return print(slice_link.split('.')[-1])
+
+
+hub = requests.get('http://hubblesite.org/api/v3/image/1', verify=True)
+for i in hub.json()['image_files']:
+    format_image(i["file_url"])
+
+
+# if __name__ == '__main__':
+#     fetch_spacex_last_launch()
