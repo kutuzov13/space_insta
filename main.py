@@ -17,9 +17,10 @@ def download_images(image_name, link_image):
     response.raise_for_status()
     if not os.path.exists(directory):
         os.makedirs(directory)
-    with open(f'{directory}/{image_name}.jpeg', mode='wb') as pic:
+    with open(f'{directory}/{image_name}.jpg', mode='wb') as pic:
         pic.write(response.content)
 
 
-for image_number, image in enumerate(get_images_spacex()):
-    download_images(image_number, image)
+if __name__ == '__main__':
+    for image_names, image in enumerate(get_images_spacex()):
+        download_images(f'spacex{image_names}', image)
