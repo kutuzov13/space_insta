@@ -2,6 +2,7 @@ import os
 
 import requests
 from PIL import Image
+from instabot import Bot
 
 
 def get_images_spacex():
@@ -40,12 +41,20 @@ def download_images_hubble(image_id):
     photo = response.json()['image_files'][-1]
     response = requests.get(f'https:{photo["file_url"]}', verify=False)
     response.raise_for_status()
+    if not os.path.exists(directory):
+        os.makedirs(directory)
     with open(f'{directory}/{image_id}.{format_image(photo["file_url"])}', mode='wb') as pic:
         pic.write(response.content)
 
 
+def resize_photo():
+    directory = './images/'
+    for file in os.listdir(directory):
+        imag = Image.open(f'{directory}/{file}')
+        imag.thumbnail((1080, 1080))
+        imag.save(f'{directory}/{file}', format="JPEG")
+
+
 if __name__ == '__main__':
     download_images_hubble('1')
-    imag = Image.open('./images/1.jpg')
-    imag.thumbnail((1080, 1080))
-    imag.save("./images/1.jpg", format="JPEG")
+    resize_photo()
