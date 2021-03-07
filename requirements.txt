@@ -6,3 +6,4 @@ urllib3==1.26.3
 
 Pillow~=8.1.2
 instabot~=0.117.0
+python-dotenv~=0.15.0
