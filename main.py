@@ -1,8 +1,9 @@
 import os
 
+import instabot
 import requests
+from dotenv import load_dotenv
 from PIL import Image
-from instabot import Bot
 
 
 def get_images_spacex():
@@ -53,6 +54,20 @@ def resize_photo():
         imag.save(f'{directory}/{file}', format="JPEG")
 
 
-if __name__ == '__main__':
-    fetch_image_hubble('1')
+def upload_instagram():
+    load_dotenv()
+    insta_username = os.getenv('INSTAGRAM_USERNAME')
+    insta_password = os.getenv('INSTAGRAM_PASSWORD')
+
+    directory = './images'
     resize_photo()
+    bot = instabot.Bot()
+    bot.login(username=insta_username, password=insta_password)
+
+    insta_images_names = os.listdir(directory)
+    for insta_image_name in insta_images_names:
+        bot.upload_photo(f'{directory}/{insta_image_name}')
+
+
+if __name__ == '__main__':
+    upload_instagram()
