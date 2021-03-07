@@ -15,11 +15,11 @@ def get_images_spacex():
 
 def download_images(image_name, link_image):
     directory = './images'
-    response = requests.get(link_image)
+    response = requests.get(link_image, verify=False)
     response.raise_for_status()
     if not os.path.exists(directory):
         os.makedirs(directory)
-    with open(f'{directory}/{image_name}.jpg', mode='wb') as pic:
+    with open(f'{directory}/{image_name}', mode='wb') as pic:
         pic.write(response.content)
 
 
@@ -33,18 +33,16 @@ def format_image(link_images):
     return slice_link.split('.')[-1]
 
 
-def download_images_hubble(image_id):
-    directory = './images'
-    api_hubble = 'http://hubblesite.org/api/v3/image/{}'
-    response = requests.get(api_hubble.format(image_id))
+def fetch_image_hubble(image_id):
+    api_hubble = f'http://hubblesite.org/api/v3/image/{image_id}'
+
+    response = requests.get(api_hubble)
     response.raise_for_status()
-    photo = response.json()['image_files'][-1]
-    response = requests.get(f'https:{photo["file_url"]}', verify=False)
-    response.raise_for_status()
-    if not os.path.exists(directory):
-        os.makedirs(directory)
-    with open(f'{directory}/{image_id}.{format_image(photo["file_url"])}', mode='wb') as pic:
-        pic.write(response.content)
+
+    last_image = response.json()['image_files'][-1]
+    last_image_url = f'https:{last_image["file_url"]}'
+    file_name = f'hubble{image_id}.{format_image(last_image["file_url"])}'
+    download_images(file_name, last_image_url)
 
 
 def resize_photo():
@@ -56,5 +54,5 @@ def resize_photo():
 
 
 if __name__ == '__main__':
-    download_images_hubble('1')
+    fetch_image_hubble('1')
     resize_photo()
