@@ -9,7 +9,7 @@
 Клонируйте репозиторий с GitHub.
 
 ```git
-git clone https
+git clone https://github.com/kutuzov13/space_insta.git
 ```
 
 Установите зависимости.
