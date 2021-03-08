@@ -11,10 +11,10 @@ from PIL import Image
 def create_parser():
     load_dotenv()
 
-    images_path = os.getenv('IMAGES_DIRECTORY')
+    images_path = os.getenv('IMAGES_PATH') or 'images'
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--path', help='Путь до изображений для отправки', default=images_path)
+    parser.add_argument('-p', '--path', help='Путь до изображений для отправки', default=images_path)
     return parser
 
 
@@ -55,8 +55,12 @@ def upload_instagram():
     bot.login(username=insta_username, password=insta_password)
 
     insta_images_names = os.listdir(images_path)
-    for insta_image_name in insta_images_names:
-        bot.upload_photo(f'{images_path}/{insta_image_name}')
+    try:
+        for insta_image_name in insta_images_names:
+            bot.upload_photo(f'{images_path}/{insta_image_name}')
+    except Exception as error:
+        print(error)
+        print('Фотографии загрузились не полностью. Попробуйте еще раз')
 
 
 if __name__ == '__main__':
