@@ -19,12 +19,12 @@ def fetch_image_spacex():
     spacex_launch_id = args.id
     spacex_path_images = args.download_path
     Path(spacex_path_images).mkdir(parents=True, exist_ok=True)
-    api_spacex = f'https://api.spacexdata.com/v4/launches/{spacex_launch_id}'
+    api_spacex = f'https://api.spacexdata.com/v3/launches/{spacex_launch_id}/'
 
     response = requests.get(api_spacex)
     response.raise_for_status()
 
-    images_spacex_url = response.json()['links']['flickr']['original']
+    images_spacex_url = response.json()['links']['flickr_images']
     for image_names, spacex_url in enumerate(images_spacex_url):
         spacex_filename = f'spacex{image_names}.{format_image(spacex_url)}'
         download_images(spacex_filename, spacex_url, spacex_path_images)
