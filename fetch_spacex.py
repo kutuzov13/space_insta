@@ -3,7 +3,7 @@ from pathlib import Path
 
 import requests
 
-from upload_insta import download_images, format_image
+from upload_insta import download_images, get_file_extension
 
 
 def create_parser():
@@ -26,7 +26,7 @@ def fetch_image_spacex():
 
     images_spacex_url = response.json()['links']['flickr_images']
     for image_names, spacex_url in enumerate(images_spacex_url):
-        spacex_filename = f'spacex{image_names}.{format_image(spacex_url)}'
+        spacex_filename = f'spacex{image_names}.{get_file_extension(spacex_url)}'
         download_images(spacex_filename, spacex_url, spacex_path_images)
 
 

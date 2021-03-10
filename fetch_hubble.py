@@ -3,7 +3,7 @@ from pathlib import Path
 
 import requests
 
-from upload_insta import download_images, format_image
+from upload_insta import download_images, get_file_extension
 
 
 def create_parser():
@@ -26,7 +26,7 @@ def fetch_image_hubble():
 
     last_image_hubble = response.json()['image_files'][-1]
     last_image_url = f'https:{last_image_hubble["file_url"]}'
-    hubble_filename = f'hubble{hubble_launch_id}.{format_image(last_image_hubble["file_url"])}'
+    hubble_filename = f'hubble{hubble_launch_id}.{get_file_extension(last_image_hubble["file_url"])}'
     download_images(hubble_filename, last_image_url, hubble_path_images)
 
 

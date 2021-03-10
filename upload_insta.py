@@ -29,7 +29,7 @@ def download_images(image_name, image_link, directory):
         pic.write(response.content)
 
 
-def format_image(link_images):
+def get_file_extension(link_images):
     parsed_link = urlparse(link_images)
     return unquote(parsed_link.path).split('.')[-1]
 
