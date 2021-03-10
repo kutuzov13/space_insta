@@ -18,7 +18,6 @@ def create_parser():
 
 
 def download_image(image_name, image_link, directory):
-    Path(directory).mkdir(parents=True, exist_ok=True)
 
     response = requests.get(image_link, verify=False)
     response.raise_for_status()
@@ -50,6 +49,8 @@ def upload_instagram():
     parser = create_parser()
     args = parser.parse_args()
     images_path = args.path
+
+    Path(images_path).mkdir(parents=True, exist_ok=True)
 
     resize_photos(images_path)
 
