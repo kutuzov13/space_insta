@@ -1,6 +1,6 @@
 import argparse
 import os
-from urllib.parse import urlparse
+from urllib.parse import urlparse, unquote
 from pathlib import Path
 
 import instabot
@@ -31,7 +31,7 @@ def download_images(image_name, image_link, directory):
 
 def format_image(link_images):
     parsed_link = urlparse(link_images)
-    return parsed_link.path.split('.')[-1]
+    return unquote(parsed_link.path).split('.')[-1]
 
 
 def resize_photo(directory):
