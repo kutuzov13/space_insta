@@ -16,7 +16,7 @@ def create_parser():
     parser.add_argument('-p', '--path', help='Path to images to send', default=os.getenv('IMAGES_PATH'))
     return parser
 
-
+#TEST
 def download_image(image_name, image_link, directory):
 
     response = requests.get(image_link, verify=False)
