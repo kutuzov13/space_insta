@@ -28,8 +28,8 @@ pip install -r requirements.txt
 - создайте файл ```.env``` рядом с файлом ```upload_insta.py```.
 - запишите Логин/Пароль в файл ```.env```:
   
-  ```INSTAGRAM_USERNAME = 'YOU_LOGIN'```.<br/>
-  ```INSTAGRAM_PASSWORD = 'YOU_PASSWORD'```.<br/>
+  ```INSTAGRAM_USERNAME='YOU_LOGIN'```.<br/>
+  ```INSTAGRAM_PASSWORD='YOU_PASSWORD'```.<br/>
   
   
 ### Как запустить проект
