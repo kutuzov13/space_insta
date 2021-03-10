@@ -19,7 +19,7 @@ def create_parser():
     return parser
 
 
-def download_images(image_name, image_link, directory):
+def download_image(image_name, image_link, directory):
     Path(directory).mkdir(parents=True, exist_ok=True)
 
     response = requests.get(image_link, verify=False)
@@ -34,7 +34,7 @@ def get_file_extension(link_images):
     return unquote(parsed_link.path).split('.')[-1]
 
 
-def resize_photo(directory):
+def resize_photos(directory):
     for file in os.listdir(directory):
         imag = Image.open(f'{directory}/{file}')
         imag.thumbnail((1080, 1080))
@@ -50,7 +50,7 @@ def upload_instagram():
     args = parser.parse_args()
     images_path = args.path
 
-    resize_photo(images_path)
+    resize_photos(images_path)
 
     bot = instabot.Bot()
     bot.login(username=insta_username, password=insta_password)
