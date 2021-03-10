@@ -9,7 +9,7 @@ from upload_insta import download_image, get_file_extension
 def create_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('id', help='id запуска', default='latest')
-    parser.add_argument('--download_path', help='Путь куда надо скачивать изображения', default='images')
+    parser.add_argument('--download_path', help='Image download path', default='images')
     return parser
 
 
