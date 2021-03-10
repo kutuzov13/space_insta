@@ -50,4 +50,4 @@ python upload_insta.py -p <path to the photos you want to upload to Instagram>
 По умолчанчию изображения оправляются в Instagram из папки ```images```. 
 
 ### Цель проекта
-Код написан в образовательных целях на онлайн-курсе для веб-разработчиков dvmn.org.
+Код написан в образовательных целях на онлайн-курсе для веб-разработчиков ***[dvmn.org](https://dvmn.org/modules/)***.
