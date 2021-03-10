@@ -12,10 +12,8 @@ from PIL import Image
 def create_parser():
     load_dotenv()
 
-    images_path = os.getenv('IMAGES_PATH') or 'images'
-
     parser = argparse.ArgumentParser()
-    parser.add_argument('-p', '--path', help='Путь до изображений для отправки', default=images_path)
+    parser.add_argument('-p', '--path', help='Путь до изображений для отправки', default=os.getenv('IMAGES_PATH'))
     return parser
 
 
@@ -34,10 +32,13 @@ def get_file_extension(link_images):
     return unquote(parsed_link.path).split('.')[-1]
 
 
+MAX_SIZE = (1080, 1080)
+
+
 def resize_photos(directory):
     for file in os.listdir(directory):
         imag = Image.open(f'{directory}/{file}')
-        imag.thumbnail((1080, 1080))
+        imag.thumbnail(MAX_SIZE)
         imag.save(f'{directory}/{file}', format="JPEG")
 
 
