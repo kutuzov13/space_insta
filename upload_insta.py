@@ -13,7 +13,7 @@ def create_parser():
     load_dotenv()
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('-p', '--path', help='Путь до изображений для отправки', default=os.getenv('IMAGES_PATH'))
+    parser.add_argument('-p', '--path', help='Path to images to send', default=os.getenv('IMAGES_PATH'))
     return parser
 
 
@@ -63,7 +63,7 @@ def upload_instagram():
             bot.upload_photo(f'{images_path}/{insta_image_name}')
     except Exception as error:
         print(error)
-        print('Фотографии загрузились не полностью. Попробуйте еще раз')
+        print('Photos are not fully uploaded. Try again')
 
 
 if __name__ == '__main__':
