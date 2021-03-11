@@ -28,7 +28,7 @@ def download_image(image_name, image_link, directory):
 
 def get_file_extension(link_images):
     parsed_link = urlparse(link_images)
-    return unquote(parsed_link.path).split('.')[-1]
+    return os.path.splitext(unquote(parsed_link.path))[-1]
 
 
 MAX_SIZE = (1080, 1080)
