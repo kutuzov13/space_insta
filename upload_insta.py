@@ -1,6 +1,5 @@
 import argparse
 import os
-from pathlib import Path
 
 import instabot
 from dotenv import load_dotenv
