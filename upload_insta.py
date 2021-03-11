@@ -1,10 +1,8 @@
 import argparse
 import os
-from urllib.parse import urlparse, unquote
 from pathlib import Path
 
 import instabot
-import requests
 from dotenv import load_dotenv
 from PIL import Image
 
@@ -18,20 +16,6 @@ def create_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('-p', '--path', help='Path to images to send', default=os.getenv('IMAGES_PATH'))
     return parser
-
-
-def download_image(image_name, image_link, directory):
-
-    response = requests.get(image_link, verify=False)
-    response.raise_for_status()
-
-    with open(f'{directory}/{image_name}', mode='wb') as pic:
-        pic.write(response.content)
-
-
-def get_file_extension(link_images):
-    parsed_link = urlparse(link_images)
-    return os.path.splitext(unquote(parsed_link.path))[-1]
 
 
 def resize_photos(directory):

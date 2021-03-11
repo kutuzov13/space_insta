@@ -3,7 +3,7 @@ from pathlib import Path
 
 import requests
 
-from upload_insta import download_image, get_file_extension
+from utils import download_image, get_file_extension
 
 
 def create_parser():
