@@ -13,11 +13,12 @@ def create_parser():
     return parser
 
 
-def fetch_image_spacex():
+def download_images_spacex():
     parser = create_parser()
     args = parser.parse_args()
     spacex_launch_id = args.id
     spacex_path_images = args.download_path
+
     Path(spacex_path_images).mkdir(parents=True, exist_ok=True)
     api_spacex = f'https://api.spacexdata.com/v3/launches/{spacex_launch_id}/'
 
@@ -31,4 +32,4 @@ def fetch_image_spacex():
 
 
 if __name__ == '__main__':
-    fetch_image_spacex()
+    download_images_spacex()

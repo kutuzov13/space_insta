@@ -13,7 +13,7 @@ def create_parser():
     return parser
 
 
-def fetch_image_hubble():
+def download_images_hubble():
     parser = create_parser()
     args = parser.parse_args()
     hubble_launch_id = args.id
@@ -31,4 +31,4 @@ def fetch_image_hubble():
 
 
 if __name__ == '__main__':
-    fetch_image_hubble()
+    download_images_hubble()
