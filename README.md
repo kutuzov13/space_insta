@@ -38,9 +38,10 @@ pip install -r requirements.txt
 python fetch_spacex.py <ID-запуска> --download_path <path for download images>
 ```
 По умолчанию изображения скачиваются в папку ```images```.
+
 Если вы хотите получить фотографии со спутника Hubble.
 ```
-python fetch_spacex.py <ID-запуска> --download_path <path for download images>
+python fetch_hubble.py <ID-запуска> --download_path <path for download images>
 ```
 По умолчанию изображения скачиваются в папку ```images```.
 Для отправки фотографий в инстаграм .
