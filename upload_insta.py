@@ -11,8 +11,6 @@ MAX_SIZE = (1080, 1080)
 
 
 def create_parser():
-    load_dotenv()
-
     parser = argparse.ArgumentParser()
     parser.add_argument('-p', '--path', help='Path to images to send', default=os.getenv('IMAGES_PATH'))
     return parser
