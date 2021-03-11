@@ -1,5 +1,4 @@
 import argparse
-from pathlib import Path
 
 import requests
 
@@ -19,7 +18,6 @@ def download_images_spacex():
     spacex_launch_id = args.id
     spacex_path_images = args.download_path
 
-    Path(spacex_path_images).mkdir(parents=True, exist_ok=True)
     api_spacex = f'https://api.spacexdata.com/v3/launches/{spacex_launch_id}/'
 
     response = requests.get(api_spacex)

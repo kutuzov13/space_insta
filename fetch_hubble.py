@@ -1,5 +1,4 @@
 import argparse
-from pathlib import Path
 
 import requests
 
@@ -18,7 +17,7 @@ def download_images_hubble():
     args = parser.parse_args()
     hubble_launch_id = args.id
     hubble_path_images = args.download_path
-    Path(hubble_path_images).mkdir(parents=True, exist_ok=True)
+
     api_hubble = f'http://hubblesite.org/api/v3/image/{hubble_launch_id}'
 
     response = requests.get(api_hubble)

@@ -33,8 +33,6 @@ def upload_instagram():
     args = parser.parse_args()
     images_path = args.path
 
-    Path(images_path).mkdir(parents=True, exist_ok=True)
-
     resize_photos(images_path)
 
     bot = instabot.Bot()
